@@ -6,3 +6,4 @@ from flask.typing import ResponseReturnValue
 def hello_world(request: Request) -> ResponseReturnValue:
     if request.method == "GET":
         return "Hello World !"
+    raise Exception("HTTP method not allowed !")
