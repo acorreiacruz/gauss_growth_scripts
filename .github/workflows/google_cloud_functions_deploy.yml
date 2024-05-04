@@ -3,9 +3,7 @@ name: Deploy Gauss Sctips to Google Cloud Functions
 on:
   push:
     branches:
-      - main
-    paths:
-      - 'modules/vtex/load_vtex_orders.py'
+      - master
 
 jobs:
   deploy:
