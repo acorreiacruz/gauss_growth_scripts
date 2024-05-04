@@ -27,7 +27,7 @@ jobs:
         name: 'load-vtex-orders-data'
         runtime: 'python310'
         entry_point: 'run'
-        source_dir: './modules/vtex/orders'
+        source_dir: './src/vtex/orders'
         region: 'southamerica-east1'
         https_trigger_security_level: 'secure_always'
         project_id: 'gaussgrowth'
