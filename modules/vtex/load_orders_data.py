@@ -54,6 +54,6 @@ class LoadOrdersData(DateTimeConfig):
         orders = self.get_detailed_orders(order_ids=vtex_orders_ids)
 
 @http
-def run(request: Request):
+def run(request: Request) -> ResponseReturnValue:
     LoadOrdersData().main()
     return "success"
