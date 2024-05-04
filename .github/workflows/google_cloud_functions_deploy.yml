@@ -27,12 +27,10 @@ jobs:
         name: 'hello_world'
         runtime: 'python310'
         entry_point: 'hello_world'
-        source_dir: './modules/vtex'
+        source_dir: './modules/vtex/hello_world'
         region: 'southamerica-east1'
         https_trigger_security_level: 'secure_always'
         project_id: 'gaussgrowth'
-      env:
-        GOOGLE_FUNCTION_SOURCE: 'hello_world.py'
 
     - name: Deploy load_orders_data Function
       uses: google-github-actions/deploy-cloud-functions@v2
@@ -40,9 +38,7 @@ jobs:
         name: 'load-vtex-orders-data'
         runtime: 'python310'
         entry_point: 'run'
-        source_dir: './modules/vtex'
+        source_dir: './modules/vtex/orders'
         region: 'southamerica-east1'
         https_trigger_security_level: 'secure_always'
         project_id: 'gaussgrowth'
-      env:
-        GOOGLE_FUNCTION_SOURCE: 'load_orders_data.py'
