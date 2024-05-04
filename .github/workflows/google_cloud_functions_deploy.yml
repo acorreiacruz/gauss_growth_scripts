@@ -21,17 +21,6 @@ jobs:
       with:
         credentials_json: ${{ secrets.GCP_CREDENTIALS }}
 
-    - name: Deploy hello_world Function
-      uses: google-github-actions/deploy-cloud-functions@v2
-      with:
-        name: 'hello_world'
-        runtime: 'python310'
-        entry_point: 'hello_world'
-        source_dir: './modules/vtex/hello_world'
-        region: 'southamerica-east1'
-        https_trigger_security_level: 'secure_always'
-        project_id: 'gaussgrowth'
-
     - name: Deploy load_orders_data Function
       uses: google-github-actions/deploy-cloud-functions@v2
       with:
@@ -42,3 +31,4 @@ jobs:
         region: 'southamerica-east1'
         https_trigger_security_level: 'secure_always'
         project_id: 'gaussgrowth'
+        env_vars: VTEX_KEY=${{ secrets.VTEX_KEY }}, VTEX_TOKEN=${{ secrets.VTEX_TOKEN }}, VTEX_ENVIRONMENT=${{ secrets.VTEX_ENVIRONMENT }}, VTEX_ACCOUNT_NAME=${{ secrets.VTEX_ACCOUNT_NAME }}
