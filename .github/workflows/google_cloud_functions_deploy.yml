@@ -3,7 +3,7 @@ name: Deploy Gauss Scripts to Google Cloud Functions
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   deploy:
