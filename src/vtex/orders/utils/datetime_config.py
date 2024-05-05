@@ -2,6 +2,7 @@ from datetime import datetime, timedelta, timezone
 
 class DateTimeConfig:
     def __init__(self) -> None:
+        self.TIMEZONE = "America/Sao_Paulo"
         self.TODAY_UTC = datetime.now(tz=timezone.utc)
         self.YESTERDAY_UTC =  self.TODAY_UTC - timedelta(days=1)
         self.YESTERDAY_UTC_DATE = self.YESTERDAY_UTC.date()
