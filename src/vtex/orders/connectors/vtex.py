@@ -2,7 +2,7 @@ from math import ceil
 
 import requests
 
-from ..settings import VTEX_API_HOST, VTEX_KEY, VTEX_TOKEN
+from src.vtex.orders.settings import VTEX_API_HOST, VTEX_KEY, VTEX_TOKEN
 
 
 class VtexAPIConnector:

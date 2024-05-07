@@ -1,10 +1,12 @@
+from typing import Any, List
 from google.cloud.bigquery import Client
+from .datawarehouse import DataWareHouse
 
 
-class BigQueryConnector:
+class BigQueryConnector(DataWareHouse):
     def __init__(self) -> None:
-        self.client = Client()
-
-    def insert_rows(self, table: str, data: list, **kwargs) -> list:
-        results = self.client.insert_rows_json(table=table, json_rows=data, **kwargs)
-        return results
+        super().__init__()
+        self.client: Client = Client()
+    def insert_rows(self, table: str, data: List[dict], **configuration: dict) -> dict:
+        result = self.client.insert_rows(table=table, rows=data, **configuration)
+        return {"success": "All data inserted"} if not result else {"error": result}
