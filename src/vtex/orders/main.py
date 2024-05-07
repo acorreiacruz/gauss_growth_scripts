@@ -60,68 +60,68 @@ class LoadOrdersData(DateTimeConfig):
                     "id": order.get("orderId"),
                     "status": order.get("status"),
                     "status_description": order.get("statusDescription"),
-                    "client_id": order.get("clientProfileData", {}).get(
+                    "client_id": (order.get("clientProfileData") or {}).get(
                         "userProfileId"
                     ),
-                    "client_name": f"{order.get('clientProfileData', {}).get('firstName')} {order.get('clientProfileData', {}).get('lastName')}".title(),
-                    "email": order.get("clientProfileData", {}).get("email"),
+                    "client_name": f"{(order.get('clientProfileData') or {}).get('firstName')} {(order.get('clientProfileData') or {}).get('lastName')}".title(),
+                    "email": (order.get("clientProfileData") or {}).get("email"),
                     "phone": Formatter.clean_phone(
-                        order.get("clientProfileData", {}).get("phone", "")
+                        (order.get("clientProfileData") or {}).get("phone", "")
                     ),
-                    "birthdate": None,  # Não fornecido nos dados
-                    "age": None,  # Não fornecido nos dados
+                    "birthdate": None,
+                    "age": None,
                     "cpf_cnpj": Formatter.clean_cpf_cnpj(
-                        order.get("clientProfileData", {}).get("document", "")
+                        (order.get("clientProfileData") or {}).get("document", "")
                     ),
-                    "shipping": order.get("shippingData", {})
+                    "shipping": (order.get("shippingData", {}) or {})
                     .get("logisticsInfo", [{}])[0]
                     .get("deliveryCompany"),
                     "shipping_value": totals.get("Shipping", 0) / 100,
                     "subtotal": totals.get("Items", 0) / 100,
                     "discount": totals.get("Discounts", 0) / 100,
-                    "additional": None,  # Não fornecido nos dados
+                    "additional": None,
                     "total": order.get("value", 0) / 100,
                     "items_count": len(order.get("items", [])),
-                    "payment_status": None,  # Não fornecido nos dados
-                    "payment_service": order.get("paymentData", {})
+                    "payment_status": None,
+                    "payment_service": (order.get("paymentData", {}) or {})
                     .get("transactions", [{}])[0]
                     .get("payments", [{}])[0]
                     .get("connectorResponses", {})
                     .get("acquirer"),
-                    "payment_type": order.get("paymentData", {})
+                    "payment_type": (order.get("paymentData", {}) or {})
                     .get("transactions", [{}])[0]
                     .get("payments", [{}])[0]
                     .get("group"),
-                    "installments": order.get("paymentData", {})
+                    "installments": (order.get("paymentData", {}) or {})
                     .get("transactions", [{}])[0]
                     .get("payments", [{}])[0]
                     .get("installments"),
-                    "seller_id": order.get("sellers", [{}])[0].get("id"),
-                    "seller": order.get("sellers", [{}])[0].get("name"),
-                    "store": order.get("marketplace", {}).get("name"),
-                    "coupon_id": None,  # Não fornecido nos dados
-                    "coupon": order.get("marketingData", {}).get("coupon"),
-                    "table_id": None,  # Não fornecido nos dados
-                    "table_name": None,  # Não fornecido nos dados
-                    "address": order.get("shippingData", {})
+                    "seller_id": (order.get("sellers", [{}])[0] or {}).get("id"),
+                    "seller": (order.get("sellers", [{}])[0] or {}).get("name"),
+                    "store": (order.get("marketplace") or {}).get("name"),
+                    "coupon_id": None,
+                    "coupon": (order.get("marketingData") or {}).get("coupon"),
+                    "table_id": None,
+                    "table_name": None,
+                    "address": (order.get("shippingData", {}) or {})
                     .get("address", {})
                     .get("street"),
-                    "address_number": order.get("shippingData", {})
+                    "address_number": (order.get("shippingData", {}) or {})
                     .get("address", {})
                     .get("number"),
-                    "address_complement": order.get("shippingData", {})
+                    "address_complement": (order.get("shippingData", {}) or {})
                     .get("address", {})
                     .get("complement"),
-                    "neighborhood": order.get("shippingData", {})
+                    "neighborhood": (order.get("shippingData", {}) or {})
                     .get("address", {})
                     .get("neighborhood"),
-                    "city": order.get("shippingData", {})
+                    "city": (order.get("shippingData", {}) or {})
                     .get("address", {})
                     .get("city"),
-                    "state": order.get("shippingData", {})
+                    "state": (order.get("shippingData", {}) or {})
                     .get("address", {})
                     .get("state"),
-                    "postal_code": order.get("shippingData", {})
+                    "postal_code": (order.get("shippingData", {}) or {})
                     .get("address", {})
                     .get("postalCode"),
                 }
