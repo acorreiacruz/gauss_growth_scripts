@@ -1,7 +1,7 @@
 from typing import List
 
-from src.vtex.orders.connectors import VtexAPIConnector
-from src.vtex.orders.utils import DateTimeConfig, Formatter
+from ..connectors import VtexAPIConnector
+from ..utils import DateTimeConfig, Formatter
 
 
 class Extract(DateTimeConfig):
@@ -29,12 +29,6 @@ class Extract(DateTimeConfig):
             vtex_order = self.vtex_api.detail_order(order_id=id)
             orders.append(vtex_order)
         return orders
-
-    def get_order_totals(self, order: dict) -> dict:
-        totals = order.get("totals")
-        return (
-            {total.get("id"): total.get("value") for total in totals} if totals else {}
-        )
 
     def run(self) -> List[dict]:
         print(

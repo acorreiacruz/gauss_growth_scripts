@@ -3,6 +3,13 @@ from typing import List
 
 
 class Transform:
+
+    def get_order_totals(self, order: dict) -> dict:
+        totals = order.get("totals")
+        return (
+            {total.get("id"): total.get("value") for total in totals} if totals else {}
+        )
+
     def run(self, orders: List[dict]) -> List[dict]:
         formmated_records = []
         for order in orders:

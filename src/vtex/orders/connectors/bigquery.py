@@ -8,5 +8,5 @@ class BigQueryConnector(DataWareHouse):
         super().__init__()
         self.client: Client = Client()
     def insert_rows(self, table: str, data: List[dict], **configuration: dict) -> dict:
-        result = self.client.insert_rows(table=table, rows=data, **configuration)
+        result = self.client.insert_rows_json(table=table, json_rows=data, **configuration)
         return {"success": "All data inserted"} if not result else {"error": result}
