@@ -24,9 +24,9 @@ jobs:
     - name: Deploy load_orders_data Function
       uses: google-github-actions/deploy-cloud-functions@v2
       with:
-        name: 'load-vtex-orders-data'
+        name: 'vtex-orders-etl-pipeline'
         runtime: 'python310'
-        entry_point: 'run'
+        entry_point: 'run_pipeline'
         source_dir: './src/vtex/orders'
         region: 'southamerica-east1'
         https_trigger_security_level: 'secure_always'
