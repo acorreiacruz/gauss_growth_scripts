@@ -4,7 +4,7 @@ from typing import List
 
 class Transform:
 
-    def get_order_totals(self, order: dict) -> dict:
+    def __get_order_totals(self, order: dict) -> dict:
         totals = order.get("totals")
         return (
             {total.get("id"): total.get("value") for total in totals} if totals else {}
@@ -16,7 +16,7 @@ class Transform:
             creation_date = Formatter.convert_utc_str_to_timezone(
                 value=order.get("creationDate")
             )
-            totals = self.get_order_totals(order=order)
+            totals = self.__get_order_totals(order=order)
             formmated_records.append(
                 {
                     "date": Formatter.string_from_datetime(creation_date),
